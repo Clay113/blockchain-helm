@@ -31,6 +31,14 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+         {{- if .Values.node }}
+          livenessProbe:
+            httpGet:
+              path: /nodes/resolve
+              port: http
+            initialDelaySeconds: {{ .Values.delaySeconds }}
+            periodSeconds: {{ .Values.periodSeconds }}
+         {{- end }}
           readinessProbe:
             httpGet:
               path: /

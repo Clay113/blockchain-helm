@@ -6,6 +6,7 @@ WORKDIR /app
 ADD ./app/ /app
 
 RUN pip install flask-cors
+
 EXPOSE 5000
 
 CMD ["python", "blockchain.py", "--port", "5000"]
